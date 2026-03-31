@@ -1,0 +1,53 @@
+﻿Analyzing SecureClub...                                         
+
+   info - 'background' is deprecated and shouldn't be used. Use surface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\core\theme\app_theme.dart:13:9 - deprecated_member_use
+   info - Parameter 'key' could be a super parameter - lib\main.dart:29:9 - use_super_parameters
+   info - The private field _activeBans could be 'final' - lib\viewmodels\dashboard_view_model.dart:4:7 - prefer_final_fields
+   info - The private field _todayEntries could be 'final' - lib\viewmodels\dashboard_view_model.dart:5:7 - prefer_final_fields
+   info - The private field _pendingBanReq could be 'final' - lib\viewmodels\dashboard_view_model.dart:6:7 - prefer_final_fields
+   info - The private field _entryCount could be 'final' - lib\viewmodels\dashboard_view_model.dart:7:7 - prefer_final_fields
+warning - The value of the field '_entryCount' isn't used - lib\viewmodels\dashboard_view_model.dart:7:7 - unused_field
+  error - Expected a method, getter, setter or operator declaration - lib\viewmodels\dashboard_view_model.dart:12:6 - expected_executable
+  error - Unexpected text ';' - lib\viewmodels\dashboard_view_model.dart:12:7 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration - lib\viewmodels\dashboard_view_model.dart:13:3 - expected_executable
+  error - Undefined name '_entryExitCount' - lib\viewmodels\dashboard_view_model.dart:16:5 - undefined_identifier
+  error - The function 'notifyListeners' isn't defined - lib\viewmodels\dashboard_view_model.dart:17:5 - undefined_function
+  error - Undefined name '_entryExitCount' - lib\viewmodels\dashboard_view_model.dart:21:9 - undefined_identifier
+  error - Undefined name '_entryExitCount' - lib\viewmodels\dashboard_view_model.dart:22:7 - undefined_identifier
+  error - The function 'notifyListeners' isn't defined - lib\viewmodels\dashboard_view_model.dart:23:7 - undefined_function
+  error - Expected a method, getter, setter or operator declaration - lib\viewmodels\dashboard_view_model.dart:31:1 - expected_executable
+   info - The private field _recentVisits could be 'final' - lib\viewmodels\inspection_log_view_model.dart:15:31 - prefer_final_fields
+   info - Parameter 'key' could be a super parameter - lib\views\ban_warning\ban_warning_view.dart:9:9 - use_super_parameters
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\views\ban_warning\ban_warning_view.dart:385:80 - deprecated_member_use
+   info - Parameter 'key' could be a super parameter - lib\views\dashboard\dashboard_view.dart:9:9 - use_super_parameters
+  error - The method '_buildActionCardsRow' isn't defined for the type 'DashboardView' - lib\views\dashboard\dashboard_view.dart:33:25 - undefined_method
+  error - The getter 'currentDateTime' isn't defined for the type 'DashboardViewModel' - lib\views\dashboard\dashboard_view.dart:166:60 - undefined_getter
+  error - The getter 'currentDateTime' isn't defined for the type 'DashboardViewModel' - lib\views\dashboard\dashboard_view.dart:167:60 - undefined_getter
+  error - The method 'decrementEntryExit' isn't defined for the type 'DashboardViewModel' - lib\views\dashboard\dashboard_view.dart:203:39 - undefined_method
+  error - The getter 'entryExitCount' isn't defined for the type 'DashboardViewModel' - lib\views\dashboard\dashboard_view.dart:215:28 - undefined_getter
+  error - The method 'incrementEntryExit' isn't defined for the type 'DashboardViewModel' - lib\views\dashboard\dashboard_view.dart:220:39 - undefined_method
+  error - The named parameter 'builder' is required, but there's no corresponding argument - lib\views\dashboard\dashboard_view.dart:248:12 - missing_required_argument
+  error - Undefined name 'text' - lib\views\dashboard\dashboard_view.dart:249:14 - undefined_identifier
+  error - Undefined name 'AppTextStyles' - lib\views\dashboard\dashboard_view.dart:249:27 - undefined_identifier
+  error - Expected an identifier - lib\views\dashboard\dashboard_view.dart:250:7 - missing_identifier
+  error - Expected to find ')' - lib\views\dashboard\dashboard_view.dart:250:7 - expected_token
+warning - The declaration '_buildCountButton' isn't referenced - lib\views\dashboard\dashboard_view.dart:254:10 - unused_element
+warning - The declaration '_buildCardsGrid' isn't referenced - lib\views\dashboard\dashboard_view.dart:269:10 - unused_element
+  error - Undefined name 'AppTextStyles' - lib\views\dashboard\dashboard_view.dart:375:30 - undefined_identifier
+  error - Undefined name 'AppTextStyles' - lib\views\dashboard\dashboard_view.dart:377:30 - undefined_identifier
+  error - The method 'go' isn't defined for the type 'BuildContext' - lib\views\dashboard\dashboard_view.dart:393:28 - undefined_method
+  error - Undefined name 'AppTextStyles' - lib\views\dashboard\dashboard_view.dart:412:38 - undefined_identifier
+  error - Undefined name 'AppTextStyles' - lib\views\dashboard\dashboard_view.dart:414:41 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\views\dashboard\dashboard_view.dart:431:59 - deprecated_member_use
+   info - Parameter 'key' could be a super parameter - lib\views\entry_scan\entry_scan_view.dart:9:9 - use_super_parameters
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\views\entry_scan\entry_scan_view.dart:189:61 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\views\entry_scan\entry_scan_view.dart:191:66 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\views\entry_scan\entry_scan_view.dart:327:45 - deprecated_member_use
+   info - Parameter 'key' could be a super parameter - lib\views\login\login_view.dart:10:9 - use_super_parameters
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\views\login\login_view.dart:33:45 - deprecated_member_use
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeThumbColor instead. This feature was deprecated after v3.31.0-2.0.pre - lib\views\settings\settings_view.dart:127:37 - deprecated_member_use
+   info - Parameter 'key' could be a super parameter - lib\widgets\custom_button.dart:12:9 - use_super_parameters
+   info - Parameter 'key' could be a super parameter - lib\widgets\custom_text_field.dart:12:9 - use_super_parameters
+   info - Parameter 'key' could be a super parameter - lib\widgets\top_navigation_bar.dart:9:9 - use_super_parameters
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\top_navigation_bar.dart:68:63 - deprecated_member_use
+

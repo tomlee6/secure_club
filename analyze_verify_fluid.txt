@@ -1,0 +1,22 @@
+Analyzing SecureClub...
+
+   info - lib\core\theme\app_theme.dart:13:9 - 'background' is deprecated and shouldn't be used. Use surface instead. This feature was deprecated after v3.18.0-0.1.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\main.dart:29:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\services\dummy_api_service.dart:64:7 - Don't invoke 'print' in production code. Try using a logging framework. - avoid_print
+   info - lib\viewmodels\entry_scan_view_model.dart:46:7 - The 'if' statement could be replaced by a null-aware assignment. Try using the '??=' operator to conditionally assign a value. - prefer_conditional_assignment
+   info - lib\viewmodels\inspection_log_view_model.dart:15:31 - The private field _recentVisits could be 'final'. Try making the field 'final'. - prefer_final_fields
+   info - lib\views\ban_warning\ban_warning_view.dart:10:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\views\ban_warning\ban_warning_view.dart:435:80 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\views\dashboard\dashboard_view.dart:340:59 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\views\entry_scan\qr_scanner_view.dart:6:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\views\entry_scan\qr_scanner_view.dart:109:39 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\views\login\login_view.dart:11:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\views\login\login_view.dart:47:45 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\views\settings\settings_view.dart:128:37 - 'activeColor' is deprecated and shouldn't be used. Use activeThumbColor instead. This feature was deprecated after v3.31.0-2.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\widgets\custom_button.dart:12:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\custom_text_field.dart:12:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\responsive_widget.dart:8:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\top_navigation_bar.dart:10:9 - Parameter 'key' could be a super parameter. Trying converting 'key' to a super parameter. - use_super_parameters
+   info - lib\widgets\top_navigation_bar.dart:76:63 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+
+18 issues found.
