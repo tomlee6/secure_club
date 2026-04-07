@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:secureclub/viewmodels/auth_provider.dart';
 import 'package:secureclub/viewmodels/ban_warning_view_model.dart';
 import 'package:secureclub/widgets/top_navigation_bar.dart';
+import '../../core/constants/api_constants.dart';
 import '../../widgets/labelled_date_picker.dart';
 
 
@@ -169,7 +170,7 @@ class _RaiseBanRequestPageState extends State<RaiseBanRequestPage> {
     final token   = authProvider.token ?? '';
     final rawClub = authProvider.user?.club;
     final clubId  = (rawClub is Map) ? rawClub['id'] : (rawClub is int ? rawClub : null);
-    final baseUrl = 'http://10.248.36.46:3000';
+    final baseUrl = ApiConstants.baseUrl;
 
     final fullName = firstNameController.text.trim();
     final nameParts = fullName.split(' ');

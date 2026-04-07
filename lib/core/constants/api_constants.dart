@@ -1,5 +1,17 @@
+enum Environment { dev, staging, prod }
+
 class ApiConstants {
-  static const String baseUrl = 'http://10.248.36.46:3000';
+  static Environment currentEnvironment = Environment.dev;
+
+  static String get baseUrl {
+    switch (currentEnvironment) {
+      case Environment.dev:
+        // return 'https://tf3afdzdqk.execute-api.ap-southeast-2.amazonaws.com/dev';
+        return 'http://10.58.205.46:3000';
+      case Environment.staging:
+        return 'https://tf3afdzdqk.execute-api.ap-southeast-2.amazonaws.com/dev'; // Placeholder
+      case Environment.prod:
+        return 'https://tf3afdzdqk.execute-api.ap-southeast-2.amazonaws.com/dev'; // Placeholder
+    }
+  }
 }
-
-

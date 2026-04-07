@@ -19,13 +19,21 @@ class EntryScanViewModel extends ChangeNotifier {
   EntryScanResult? _scanResult;
   EntryScanResult? get scanResult => _scanResult;
 
+  String? _errorMessage;
+  String? get errorMessage => _errorMessage;
+
   Future<void> scanQrCode(String qrData, String token) async {
     if (qrData.isNotEmpty) {
       _isScanning = true;
+      _errorMessage = null; // Reset previous error
       notifyListeners();
       
       try {
         _scanResult = await _apiService.verifyQrCode(qrData, token);
+      } catch (e) {
+        _scanResult = null;
+        // Clean up the generic 'Exception:' prefix from the error text
+        _errorMessage = e.toString().replaceAll('Exception: ', '');
       } finally {
         _isScanning = false;
         notifyListeners();
@@ -45,6 +53,7 @@ class EntryScanViewModel extends ChangeNotifier {
     _isFaceCaptured = false;
     _capturedImage = null;
     _scanResult = null;
+    _errorMessage = null;
     notifyListeners();
   }
 

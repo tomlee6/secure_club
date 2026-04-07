@@ -2,14 +2,18 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+import '../core/constants/api_constants.dart';
 import '../models/entry_scan_result.dart';
 
 class ScanService {
-  static const String baseUrl = 'http://10.248.36.46:3000';
+  static  String baseUrl = ApiConstants.baseUrl;
 
   Future<EntryScanResult?> verifyQrCode(String qrData, String token) async {
     print('--- INITIATING QR SCAN VERIFY ---');
     try {
+      // Clean up the QR data, handling \r\n, \r, and literal \n which might be captured by the scanner
+      String cleanQrData = qrData.replaceAll('\\n', '\n').replaceAll('\r\n', '\n').replaceAll('\r', '\n').trim();
+
       final response = await http.post(
         Uri.parse('$baseUrl/api/v1/scan/qr-verify'),
         headers: {
@@ -17,7 +21,7 @@ class ScanService {
           'Authorization': 'Bearer $token',
         },
         body: jsonEncode({
-          "qr_data": qrData,
+          "qr_data": cleanQrData,
           "id_type": "passport",
           "device_id": 1
         }),
@@ -26,6 +30,8 @@ class ScanService {
       print('--- SCAN QR VERIFY API RESPONSE ---');
       print('Status: ${response.statusCode}');
       print('Body: ${response.body}');
+      print('Raw Scanned Data: $qrData');
+      print('Cleaned Data: $cleanQrData');
       print('-----------------------------------');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -58,11 +64,24 @@ class ScanService {
             banExpiry: banDetails['expiry']?.toString() ?? 'Permanent',
           );
         }
+      } else {
+        // Backend returned an error, extract the message
+        try {
+          final Map<String, dynamic> errorData = jsonDecode(response.body);
+          if (errorData['error'] != null) {
+            String errorMessage = errorData['error']['details'] ?? errorData['error']['message'] ?? 'Invalid QR data.';
+            throw Exception(errorMessage);
+          }
+        } catch (e) {
+          if (e is Exception) rethrow; // Let our custom exception bubble up
+        }
+        throw Exception('Server returned ${response.statusCode}');
       }
     } catch (e) {
       print('--- SCAN API ERROR ---');
       print(e);
       print('----------------------');
+      rethrow;
     }
     return null;
   }

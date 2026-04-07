@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../core/constants/api_constants.dart';
 import '../models/ban_request_model.dart';
 
 class BanWarningService {
-  static const String baseUrl = 'http://10.248.36.46:3000';
+  static final String baseUrl = ApiConstants.baseUrl;
 
   Future<Map<String, dynamic>> getBanRequests({
     required String token,

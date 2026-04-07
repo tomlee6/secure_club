@@ -50,29 +50,19 @@ class _QrScannerViewState extends State<QrScannerView> {
           MobileScanner(
             controller: controller,
             errorBuilder: (context, error) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.error_outline, color: AppColors.errorRed, size: 60),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Camera Error: ${error.errorCode.name}',
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Please ensure you have granted camera permissions.',
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              );
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Camera Error: ${error.errorCode.name}. Please ensure you have granted camera permissions.'),
+                      backgroundColor: Colors.red,
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                }
+              });
+              return const Center(child: CircularProgressIndicator());
             },
             onDetect: (capture) {
               if (isScanned) return;

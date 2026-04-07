@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../core/constants/api_constants.dart';
+
 class DashboardService {
-  static const String baseUrl = 'http://10.248.36.46:3000';
+  static  String baseUrl = ApiConstants.baseUrl;
 
   Future<Map<String, dynamic>> fetchStats(String token) async {
     try {

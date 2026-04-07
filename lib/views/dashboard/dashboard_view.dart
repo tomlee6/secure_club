@@ -81,7 +81,7 @@ class _DashboardViewState extends State<DashboardView> {
           style: AppTextStyles.heading1.copyWith(fontSize: 28),
         ),
         const SizedBox(height: 8),
-        Text(
+        Text( 
           'Real-time monitoring of all facility access attempts and verifications.',
           style: AppTextStyles.bodyLight.copyWith(
               fontSize: 14, color: const Color(0xFFE2E8F0)),

@@ -48,7 +48,8 @@ class EntryLogModel {
 // Provider
 // ─────────────────────────────────────────────────────────────
 class EntryLogsProvider extends ChangeNotifier {
-  static const String _baseUrl = 'http://10.248.36.46:3000/api/v1';
+  static const String _baseUrl = 'http://10.58.205.46:3000/api/v1';
+  // static const String _baseUrl = 'ApiConstants.baseUrl/api/v1';
   static const int    _limit   = 20;
 
   // ── GET state ──

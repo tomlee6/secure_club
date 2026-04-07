@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../core/constants/api_constants.dart';
 import '../models/user_model.dart';
 
 class LoginService {
-  static const String baseUrl = 'http://10.248.36.46:3000';
+  static  String baseUrl = ApiConstants.baseUrl;
 
   Future<Map<String, dynamic>> login(String email, String password, String deviceUuid) async {
     try {

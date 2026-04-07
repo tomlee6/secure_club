@@ -186,9 +186,35 @@ class EntryScanView extends StatelessWidget {
             onTap: () async {
               final token = context.read<AuthProvider>().token;
               if (token != null) {
-                // Hardcoded QR string for testing without real IDs
-                const String qrData = "P<AUSSMITH<<JOHN<<<<<<<<<<<<<<<<<<<<<<<<<<\nPA12345678AUS9805151M3012311<<<<<<<<<<<<<<<4";
-                viewModel.scanQrCode(qrData, token);
+                try {
+                  final String? qrData = await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const QrScannerView()),
+                  );
+
+                  if (qrData != null && qrData.isNotEmpty) {
+                    await viewModel.scanQrCode(qrData, token);
+                    if (viewModel.scanResult == null && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(viewModel.errorMessage ?? 'Scan failed: Invalid QR code or server error.'),
+                          backgroundColor: Colors.red,
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                    }
+                  }
+                } catch (e) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error during scan: $e'),
+                        backgroundColor: Colors.red,
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                  }
+                }
               }
             },
             child: Container(

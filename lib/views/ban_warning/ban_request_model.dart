@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../../core/constants/api_constants.dart';
+
 // ─────────────────────────────────────────────────────
 // BanRequestModel — GET /api/v1/bans/requests
 // ─────────────────────────────────────────────────────
@@ -161,7 +163,7 @@ class GuardEntryModel {
 // BanRequestsProvider
 // ─────────────────────────────────────────────────────
 class BanRequestsProvider extends ChangeNotifier {
-  static const String _baseUrl = 'http://10.135.129.88:3000';
+  static  String _baseUrl = ApiConstants.baseUrl;
 
   Map<String, String> _headers(String token) => {
     'Content-Type': 'application/json',
