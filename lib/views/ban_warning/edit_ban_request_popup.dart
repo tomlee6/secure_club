@@ -31,7 +31,6 @@ class _EditBanRequestPageState extends State<EditBanRequestPage> {
   late TextEditingController genderController;
   late TextEditingController entryDateController;
   late TextEditingController descriptionController;
-  late TextEditingController toDateController;
   DateTime? _fromDate;
   DateTime? _toDate;
 
@@ -187,7 +186,6 @@ class _EditBanRequestPageState extends State<EditBanRequestPage> {
         } else {
           isCustom = true;
           selectedDuration = "Custom";
-          toDateController.text = _isoToDisplay(expiryDate);
         }
       }
     }

@@ -14,6 +14,7 @@ import 'package:secureclub/widgets/top_navigation_bar.dart';
 import '../../core/constants/api_constants.dart';
 import '../../widgets/labelled_date_picker.dart';
 import '../../widgets/labelled_date_time_picker.dart';
+import '../../widgets/gender_radio_group.dart';
 
 class RaiseWarningPage extends StatefulWidget {
   final String name;
@@ -128,7 +129,7 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
       (kIsWeb && _evidenceBytes != null) ||
           (!kIsWeb && _evidenceFile != null);
 
-  Future<void> _saveWarning() async {
+  void _saveWarning() {
     if (selectedReason == "Select a reason...") {
       _showError("Please select a warning reason.");
       return;
@@ -146,6 +147,10 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
       return;
     }
 
+    _showConfirmationPopup();
+  }
+
+  Future<void> _executeSaveWarning() async {
     setState(() => _isSubmitting = true);
 
     final baseUrl = ApiConstants.baseUrl;
@@ -210,7 +215,7 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
           setState(() => _isSubmitting = false);
           final t = context.read<AuthProvider>().token ?? '';
           context.read<BanWarningViewModel>().fetchWarnings(t);
-          _showSuccessPopup(responseData['data'] ?? {});
+          if (mounted) Navigator.of(context).pop();
         }
       } else {
         final msg = responseData['error']?['message']
@@ -257,18 +262,14 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
     }
   }
 
-  void _showSuccessPopup(Map<String, dynamic> data) {
-    final person      = data['person']       as Map<String, dynamic>? ?? {};
-    final club        = data['club']         as Map<String, dynamic>? ?? {};
-    final requestedBy = data['requested_by'] as Map<String, dynamic>? ?? {};
-
+  void _showConfirmationPopup() {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (dialogCtx) {
         void closeDone() {
           Navigator.of(dialogCtx).pop();
-          if (mounted) Navigator.of(context).pop();
+          _executeSaveWarning();
         }
 
         void closeCancel() {
@@ -323,35 +324,8 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
                             ),
                           ),
                         ],
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.orange.withOpacity(0.08),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: Colors.orange.withOpacity(0.3)),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.warning_amber_rounded,
-                                color: Colors.orange, size: 15),
-                            const SizedBox(width: 6),
-                            Text(
-                              "Status: ${(data['status'] ?? 'pending').toString().toUpperCase()}",
-                              style: const TextStyle(
-                                  color: Colors.orange,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ]),
                 ),
 
                 const Divider(height: 1, color: Color(0xFFEEEEEE)),
@@ -373,26 +347,24 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
                                 children: [
                                   _detailItem(
                                     "Patron Name",
-                                    "${person['first_name'] ?? firstNameController.text} "
-                                        "${person['last_name'] ?? lastNameController.text}"
+                                    "${firstNameController.text} "
+                                        "${lastNameController.text}"
                                         .trim(),
                                   ),
                                   const SizedBox(height: 12),
                                   _detailItem(
                                     "ID Number",
-                                    person['id_number'] ?? idController.text,
+                                    idController.text,
                                   ),
                                   const SizedBox(height: 12),
                                   _detailItem(
                                     "Warning Reason",
-                                    data['reason'] ?? selectedReason,
+                                    selectedReason,
                                   ),
                                   const SizedBox(height: 12),
                                   _detailItem(
                                     "Ban Type",
-                                    (data['ban_type'] ?? 'temporary')
-                                        .toString()
-                                        .toUpperCase(),
+                                    'TEMPORARY',
                                   ),
                                   const SizedBox(height: 12),
                                   _detailItem(
@@ -401,21 +373,10 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
                                   ),
                                   const SizedBox(height: 12),
                                   _detailItem(
-                                    "Club",
-                                    club['name'] ?? '—',
+                                    "Description",
+                                    warningDescController.text.trim(),
                                   ),
                                   const SizedBox(height: 12),
-                                  _detailItem(
-                                    "Requested By",
-                                    requestedBy['name'] ?? '—',
-                                  ),
-                                  if (data['ban_id'] != null) ...[
-                                    const SizedBox(height: 12),
-                                    _detailItem(
-                                      "Warning ID",
-                                      "#${data['ban_id']}",
-                                    ),
-                                  ],
                                 ],
                               ),
                             ),
@@ -663,9 +624,12 @@ class _RaiseWarningPageState extends State<RaiseWarningPage> {
                                   hintText: "dd/mm/yyyy",
                                   lastDate: DateTime.now(),
                               ),
-                              right: _labeledInput(
-                                  "Gender", genderController,
-                                  hint: "e.g. Male / Female"),
+                              right: GenderRadioGroup(
+                                initialValue: genderController.text.isNotEmpty ? genderController.text : null,
+                                onChanged: (val) {
+                                  genderController.text = val;
+                                },
+                              ),
                             ),
 
                             const SizedBox(height: 20),

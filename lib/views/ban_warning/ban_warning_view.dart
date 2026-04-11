@@ -357,7 +357,10 @@ class _BanWarningViewState extends State<BanWarningView> {
             child: Row(
               children: [
                 const Expanded(flex: 2, child: Text("NAME", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
-                Expanded(flex: 2, child: Text(isTabZero ? "REQUESTED ON" : "REASON", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
+                if (isTabZero)
+                   const Expanded(flex: 2, child: Text("START DATE", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
+                if (!isTabZero)
+                   const Expanded(flex: 2, child: Text("REASON", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                 Expanded(flex: 2, child: Text(isTabZero ? "EXPIRY DATE" : "DATE", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                 if (isTabZero)
                   const Expanded(flex: 2, child: Text("STATUS", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
@@ -405,6 +408,7 @@ class _BanWarningViewState extends State<BanWarningView> {
                         item.name,
                         formattedRequestedOn,
                         formattedExpiry,
+                        startDate: formattedRequestedOn,
                         status: item.status,
                         isBanRequest: true,
                         onView: () {
@@ -672,13 +676,14 @@ class _BanWarningViewState extends State<BanWarningView> {
 
 class TableRowNew extends StatelessWidget {
   final String name, duration, date;
+  final String? startDate;
   final String? status;
   final bool isBanRequest;
   final VoidCallback? onView;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
 
-  const TableRowNew(this.name, this.duration, this.date, {this.status, this.isBanRequest = true, this.onView, this.onEdit, this.onDelete, super.key});
+  const TableRowNew(this.name, this.duration, this.date, {this.startDate, this.status, this.isBanRequest = true, this.onView, this.onEdit, this.onDelete, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -693,7 +698,10 @@ class TableRowNew extends StatelessWidget {
       child: Row(
         children: [
           Expanded(flex: 2, child: Text(name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13))),
-          Expanded(flex: 2, child: Text(duration, style: const TextStyle(fontSize: 13))),
+          if (isBanRequest)
+            Expanded(flex: 2, child: Text(startDate ?? '', style: const TextStyle(fontSize: 13))),
+          if (!isBanRequest)
+            Expanded(flex: 2, child: Text(duration, style: const TextStyle(fontSize: 13))),
           Expanded(flex: 2, child: Text(date, style: const TextStyle(fontSize: 13))),
           if (isBanRequest)
             Expanded(

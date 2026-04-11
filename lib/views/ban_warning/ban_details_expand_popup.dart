@@ -116,6 +116,12 @@ class BannedDetailsPopup extends StatelessWidget {
                           value(duration),
                           const SizedBox(height: 10),
 
+                          if (banRequest != null) ...[
+                            label("Start Date"),
+                            value(banRequest!.requestedOn),
+                            const SizedBox(height: 10),
+                          ],
+
                           label("Evidence"),
                           const SizedBox(height: 8),
 

@@ -16,6 +16,7 @@ import 'package:secureclub/viewmodels/ban_warning_view_model.dart';
 import 'package:secureclub/widgets/top_navigation_bar.dart';
 import '../../core/constants/api_constants.dart';
 import '../../widgets/labelled_date_picker.dart';
+import '../../widgets/gender_radio_group.dart';
 
 
 class RaiseBanRequestPage extends StatefulWidget {
@@ -642,10 +643,11 @@ class _RaiseBanRequestPageState extends State<RaiseBanRequestPage> {
                                 onDateSelected: (date) => setState(() => _dob = date),
                                 lastDate: DateTime.now(),
                               ),
-                              right: _labeledInput(
-                                "Gender",
-                                genderController,
-                                hint: "e.g. Male / Female",
+                              right: GenderRadioGroup(
+                                initialValue: genderController.text.isNotEmpty ? genderController.text : null,
+                                onChanged: (val) {
+                                  genderController.text = val;
+                                },
                               ),
                             ),
 
@@ -1031,6 +1033,7 @@ class _RaiseBanRequestPageState extends State<RaiseBanRequestPage> {
         if (label == "Custom") {
           isCustom = true;
           selectedDuration = "Custom";
+          _fromDate = DateTime.now();
         } else {
           isCustom = false;
           selectedDuration = label;
