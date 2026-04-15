@@ -6,6 +6,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../../core/constants/api_constants.dart';
+
 class EntryLogModel {
   final int id;
   final String visitorName;
@@ -48,8 +50,8 @@ class EntryLogModel {
 // Provider
 // ─────────────────────────────────────────────────────────────
 class EntryLogsProvider extends ChangeNotifier {
-  static const String _baseUrl = 'http://10.58.205.46:3000/api/v1';
-  // static const String _baseUrl = 'ApiConstants.baseUrl/api/v1';
+  // static const String _baseUrl = 'http://10.58.205.46:3000/api/v1';
+  static  final String _baseUrl = '${ApiConstants.baseUrl}/api/v1';
   static const int    _limit   = 20;
 
   // ── GET state ──
