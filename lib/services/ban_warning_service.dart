@@ -49,7 +49,10 @@ class BanWarningService {
           final currentPage = pagination['page'] ?? 1;
 
           final items = entriesList.map((item) {
-            final name = item['person_name']?.toString() ?? 'Unknown';
+            final firstName = item['person_first_name']?.toString() ?? '';
+            final lastName = item['person_last_name']?.toString() ?? '';
+            final name = item['person_name']?.toString() ?? 
+                         (firstName.isNotEmpty || lastName.isNotEmpty ? '$firstName $lastName'.trim() : 'Unknown');
             final duration = item['ban_type']?.toString() ?? 'Unknown';
             final dateStr = item['requested_at']?.toString() ?? '';
             final date = dateStr.isNotEmpty ? dateStr.split('T').first : 'Unknown';

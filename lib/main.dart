@@ -13,7 +13,6 @@ import 'views/inspection_log/entry_logs_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  GoogleFonts.config.allowRuntimeFetching = false;
   runApp(
     MultiProvider(
       providers: [

@@ -383,10 +383,10 @@ class _BanWarningViewState extends State<BanWarningView> {
                     if (isTabZero) {
                       final item = viewModel.banRequests[index];
                       String formattedExpiry = 'Unknown';
-                      if (item.banExpiryDate != null && item.banExpiryDate!.isNotEmpty) {
+                      if (item.banExpiryDate != null && item.banExpiryDate!.isNotEmpty && item.banExpiryDate != 'null') {
                         try {
                           final date = DateTime.parse(item.banExpiryDate!).toLocal();
-                          formattedExpiry = "${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}";
+                          formattedExpiry = "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
                         } catch (_) {
                           formattedExpiry = item.banExpiryDate!;
                         }

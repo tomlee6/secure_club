@@ -6,9 +6,9 @@ class ApiConstants {
   static String get baseUrl {
     switch (currentEnvironment) {
       case Environment.dev:
+        return 'http://localhost:3000';
         // return 'https://tf3afdzdqk.execute-api.ap-southeast-2.amazonaws.com/dev';
-        return 'https://tf3afdzdqk.execute-api.ap-southeast-2.amazonaws.com/dev';
-        // return 'http://localhost:3000';
+        return 'http://localhost:3000';
       case Environment.staging:
         return 'https://tf3afdzdqk.execute-api.ap-southeast-2.amazonaws.com/dev'; // Placeholder
       case Environment.prod:
